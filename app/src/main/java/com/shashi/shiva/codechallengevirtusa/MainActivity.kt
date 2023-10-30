@@ -6,10 +6,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.shashi.shiva.codechallengevirtusa.ui.screens.NavigationRoutes
+import com.shashi.shiva.codechallengevirtusa.ui.screens.authenticatedGraph
+import com.shashi.shiva.codechallengevirtusa.ui.screens.unauthenticatedGraph
 import com.shashi.shiva.codechallengevirtusa.ui.theme.CodeChallengeTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,30 +22,46 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CodeChallengeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                MainApp()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MainApp() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        MainAppNavHost()
+    }
+
+}
+
+@Composable
+fun MainAppNavHost(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
+) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = NavigationRoutes.Unauthenticated.NavigationRoute.route
+    ) {
+        // Unauthenticated user flow screens
+        unauthenticatedGraph(navController = navController)
+
+        // Authenticated user flow screens
+        authenticatedGraph(navController = navController)
+    }
+
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun DefaultPreview() {
     CodeChallengeTheme {
-        Greeting("Android")
+        MainApp()
     }
 }

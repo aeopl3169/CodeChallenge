@@ -47,16 +47,40 @@ android {
 }
 
 dependencies {
-
+    // Android Ktx
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
+
+    // Lifecycle ktx extensions
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+
+    // Jetpack Compose activity
     implementation 'androidx.activity:activity-compose:1.5.1'
     implementation platform('androidx.compose:compose-bom:2022.10.00')
+
+    // Jetpack Compose
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'
+
+    // Material3
     implementation 'androidx.compose.material3:material3'
+
+    // Jetpack Compose Lifecycle Support
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_compose_version"
+
+    // Jetpack Compose Navigation Support
+    implementation "androidx.navigation:navigation-compose:$navigation_compose_version"
+
+    // Jetpack Compose ViewModel support
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version"
+
+    // Jetpack Compose Material icons
+    implementation "androidx.compose.material:material-icons-extended:$compose_material_icons_version"
+
+    //Coil Image
+    implementation "io.coil-kt:coil-compose:$coil_version"
+    
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
